@@ -1,0 +1,20 @@
+language: go
+
+go: 1.12.4
+
+os:
+  - linux
+  - osx
+
+script: go build -o pom-replacer-$TRAVIS_OS_NAME
+
+deploy:
+  provider: releases
+  api_key: $AUTH_TOKEN
+  file:
+    - "pom-replacer-osx"
+    - "pom-replacer-linux"
+
+  skip_cleanup: true
+  on:
+    tags: true
